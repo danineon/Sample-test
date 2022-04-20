@@ -1,5 +1,6 @@
 import unicodedata
 
+# Remove accents from a string
 def remove_accent(text):
     try:
         text = unicode(text, "utf-8")
@@ -9,7 +10,7 @@ def remove_accent(text):
         "ascii", "ignore").decode("utf-8")
     return str(text)
 
-
+# Query: Return dataframe of customer with the oldest check in date
 def old_date(df2):
     mindate = df2["Last Check-In Date"].min()
     df2["Last Check-In Date"] = df2["Last Check-In Date"].dt.strftime(
@@ -21,7 +22,7 @@ def old_date(df2):
     query = df2.loc[query]
     return query
 
-
+# Query: Return dataframe of customer with the most recent check in date
 def recent_date(df2):
     maxdate = df2["Last Check-In Date"].max()
     df2["Last Check-In Date"] = df2["Last Check-In Date"].dt.strftime(
@@ -33,7 +34,7 @@ def recent_date(df2):
     query = df2.loc[query]
     return query
 
-
+# Query: Return list of sorted customers
 def sort_customers(df2):
     customer_list = []
     df2["Full Name"] = df2["First Name"] + " " + df2["Last Name"]
