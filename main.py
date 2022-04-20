@@ -3,8 +3,10 @@ from tabulate import tabulate
 from art import *
 from lib.preprocessing import preprocessing
 import pandas as pd
+from lib.queries import old_date, recent_date, sort_customers
 
 df = pd.DataFrame()
+
 
 def browse_files():
 
@@ -65,15 +67,44 @@ while True:
 
                 elif key == "w":
                     os.system("cls")
+
+                    df2 = preprocessing(route)
+                    query = old_date(df2)
+                    print(
+                        "Full Name: "
+                        + query["First Name"].values[0]
+                        + " "
+                        + query["Last Name"].values[0]
+                        + "\nLast Check-In Date: "
+                        + query["Last Check-In Date"].values[0]
+                    )
+
                     input("\nPress Enter to return...")
                     os.system("cls")
 
                 elif key == "a":
                     os.system("cls")
+
+                    df2 = preprocessing(route)
+                    query = recent_date(df2)
+                    print(
+                        "Full Name: "
+                        + query["First Name"].values[0]
+                        + " "
+                        + query["Last Name"].values[0]
+                        + "\nLast Check-In Date: "
+                        + query["Last Check-In Date"].values[0]
+                    )
+
                     input("\nPress Enter to return...")
                     os.system("cls")
                 elif key == "s":
                     os.system("cls")
+
+                    df2 = preprocessing(route)
+                    list = sort_customers(df2)
+                    print(list)
+
                     input("\nPress Enter to return...")
                     os.system("cls")
 
